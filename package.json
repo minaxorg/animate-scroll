@@ -1,5 +1,5 @@
 {
-  "name": "animate-scroll",
+  "name": "@minax/animate-scroll",
   "version": "0.0.1",
   "description": "Let the elements have an animated scroll in the React project.",
   "main": "lib/index.js",
@@ -35,6 +35,7 @@
     "typescript": "^3.3.3333"
   },
   "dependencies": {
+    "@babel/polyfill": "^7.2.5",
     "@types/react": "^16.8.6",
     "@types/react-dom": "^16.8.2",
     "react": "^16.8.3",
