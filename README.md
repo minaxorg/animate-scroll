@@ -2,11 +2,11 @@
 Let the elements have an animated scroll in the React project.
 
 ## Install
-`
+``` shell
 npm i --save @minax/animate-scroll
-`
+```
 
-# Quick Overview
+## Quick Overview
 ``` jsx
 import React, { Component } from 'react';
 import animate from '@minax/animate-scroll'
@@ -50,7 +50,7 @@ class App extends Component {
 }
 ```
 
-<p align="center">
+<p>
   <img src="./docs/images/1.gif" style="border-radius: 5px; box-shadow: 0 0 10px rgba(0, 0, 0, .2)" />
 </p>
 
