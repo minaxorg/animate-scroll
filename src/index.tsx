@@ -1,4 +1,5 @@
 import React, { PureComponent } from 'react'
+import { findDOMNode } from 'react-dom'
 
 import { animateScroll } from './utils'
 
@@ -12,14 +13,10 @@ interface Options {
 
 function animate (Cpt: typeof React.Component, options: Options = {}) {
   return class T extends PureComponent<any & { scrollTop: number }> {
-    refContainer: null | HTMLElement = null
+    refContainer: null | Element | Text = null
     state = {}
     constructor (props: any) {
       super(props)
-      this.connectContainer = this.connectContainer.bind(this)
-    }
-    connectContainer (el: HTMLElement) {
-      this.refContainer = el
     }
     componentDidUpdate (prevProps: any) {
       const { scrollTop } = this.props
@@ -30,12 +27,17 @@ function animate (Cpt: typeof React.Component, options: Options = {}) {
         }
       }
     }
+    componentDidMount () {
+      this.refContainer = findDOMNode(this)
+    }
+    componentWillUnmount () {
+      this.refContainer = null
+    }
     render () {
       const { scrollTop, ...rest } = this.props
       return (
         <Cpt
           {...rest}
-          connect={this.connectContainer}
         />
       )
     }

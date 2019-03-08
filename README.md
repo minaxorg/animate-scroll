@@ -11,7 +11,7 @@ npm i --save @minax/animate-scroll
 import React, { Component } from 'react';
 import animate from '@minax/animate-scroll'
 
-const List = ({ connect }) => (
+const List = () => (
   <div
     style={{
       height: 400,
@@ -20,7 +20,6 @@ const List = ({ connect }) => (
       textAlign: 'center',
       border: '1px solid #000'
     }}
-    ref={(el) => connect(el)}
   >
     {
       new Array(40).fill(1).map((i, index) => (
