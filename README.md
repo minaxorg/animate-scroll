@@ -17,7 +17,7 @@ const WrapperCpt = animate(Cpt[, options])
 name|type|default|description
 --|--|--|--
 spendTime|number|600|animation duration(ms)
-animationFunc|AnimationType|Animation function|'linear'
+animationFunc|AnimationType|'linear'|animation function
 
 ### AnimationType
 ```
