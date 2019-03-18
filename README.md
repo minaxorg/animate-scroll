@@ -15,7 +15,7 @@ const WrapperCpt = animate(Cpt[, options])
 > options is an object composed of the following key
 
 name|type|default|description
---|--|--|--|--
+--|--|--|--
 spendTime|number|600|animation duration(ms)
 animationFunc|AnimationType|Animation function|'linear'
 
