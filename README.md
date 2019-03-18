@@ -6,6 +6,34 @@ Let the elements have an animated scroll in the React project.
 npm i --save @minax/animate-scroll
 ```
 
+## Usage
+```
+import animate from '@minax/animation-scroll'
+
+const WrapperCpt = animate(Cpt[, options])
+```
+> options is an object composed of the following key
+
+name|type|default|description
+--|--|--|--|--
+spendTime|number|600|animation duration(ms)
+animationFunc|AnimationType|Animation function|'linear'
+
+### AnimationType
+```
+type AnimationType = 'linear' |
+  'easeInSine' | 'easeOutSine' | 'easeInOutSine' |
+  'easeInQuad' | 'easeOutQuad' | 'easeInOutQuad' |
+  'easeInCubic' | 'easeOutCubic' | 'easeInOutCubic' |
+  'easeInQuart' | 'easeOutQuart' | 'easeInOutQuart' |
+  'easeInQuint' | 'easeOutQuint' | 'easeInOutQuint' |
+  'easeInExpo' | 'easeOutExpo' | 'easeInOutExpo' |
+  'easeInCirc' | 'easeOutCirc' | 'easeInOutCirc' |
+  'easeInBack' | 'easeOutBack' | 'easeInOutBack' |
+  'easeInElastic' | 'easeOutElastic' | 'easeInOutElastic' |
+  'easeInBounce' | 'easeOutBounce' | 'easeInOutBounce'
+```
+
 ## Quick Overview
 ``` jsx
 import React, { Component } from 'react';

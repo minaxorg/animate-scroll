@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react'
 import { findDOMNode } from 'react-dom'
 
-import { animateScroll } from './utils'
+import { animateScroll, AnimationType } from './utils'
 
 interface Options {
   /**
@@ -9,6 +9,11 @@ interface Options {
    * default 600
    */
   spendTime?: number
+  /**
+   * Animation function.
+   * default linear
+   */
+  animationFunc?: AnimationType
 }
 
 function animate (Cpt: typeof React.Component, options: Options = {}) {
@@ -23,7 +28,14 @@ function animate (Cpt: typeof React.Component, options: Options = {}) {
       const { scrollTop: prevScrollTop } = prevProps
       if (scrollTop !== prevScrollTop) {
         if (this.refContainer) {
-          animateScroll(this.refContainer, scrollTop, options.spendTime || 600)
+          animateScroll(
+            this.refContainer,
+            scrollTop,
+            {
+              animationFunc: options.animationFunc || 'linear',
+              spendTime: options.spendTime || 600
+            }
+          )
         }
       }
     }
