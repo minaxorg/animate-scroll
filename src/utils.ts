@@ -37,8 +37,18 @@ function animateScroll (
   start: number,
   end: number,
   callback: (now: number) => any,
-  { spendTime, animationFunc = 'linear' }: { spendTime: number, animationFunc: AnimationType }
-) {
+  options?: { spendTime?: number, animationFunc?: AnimationType }
+  ) {
+  if (!options) {
+    options = { spendTime: 600, animationFunc: 'linear' }
+  }
+  if (!options.spendTime) {
+    options.spendTime = 600
+  }
+  if (!options.animationFunc) {
+    options.animationFunc = 'linear'
+  }
+  const { spendTime, animationFunc } = options
   let step = 0
   const totalStep = 60 * spendTime / 1000
   const animation = getAnimation(animationFunc)

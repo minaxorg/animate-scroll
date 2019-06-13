@@ -9,13 +9,15 @@ npm i --save @minax/animate-scroll
 ## Usage
 ```
 import animate from '@minax/animation-scroll'
-
-const WrapperCpt = animate(Cpt[, options])
+animate(start, end, callback[, options])
 ```
 > options is an object composed of the following key
 
 name|type|default|description
 --|--|--|--
+start|number||animation start point
+end|number||animation end point
+callback|function||callback with current value when update
 spendTime|number|600|animation duration(ms)
 animationFunc|AnimationType|'linear'|animation function
 
@@ -36,45 +38,47 @@ type AnimationType = 'linear' |
 
 ## Quick Overview
 ``` jsx
-import React, { Component } from 'react';
+import React, { useEffect, useRef } from 'react';
+
 import animate from '@minax/animate-scroll'
 
-const List = () => (
-  <div
-    style={{
-      height: 400,
-      margin: 24,
-      overflow: 'auto',
-      textAlign: 'center',
-      border: '1px solid #000'
-    }}
-  >
-    {
-      new Array(40).fill(1).map((i, index) => (
-        <div key={index} style={{ fontSize: 40 }}>{index}</div>
-      ))
-    }
-  </div>
-)
-
-const Alist = animate(List, { spendTime: 1000 })
-
-class App extends Component {
-  state = {
-    scrollTop: 0
-  }
-  componentDidMount () {
+function App() {
+  const r = useRef(null)
+  useEffect(() => {
     setInterval(() => {
-      this.setState({
-        scrollTop: Math.random() * 1400
-      })
-    }, 1500)
-  }
-  render() {
-    return (
-      <Alist scrollTop={this.state.scrollTop} />
-    );
-  }
+      if (r.current) {
+        const { scrollTop, scrollHeight } = r.current
+        animate(
+          scrollTop,
+          Math.random() * scrollHeight,
+          (now) => {
+            r.current.scrollTop = now
+          },
+          {
+            spendTime: 1000
+          }
+        )
+      }
+    }, 1500);
+  })
+  return (
+    <div
+      ref={r}
+      style={{
+        height: 400,
+        margin: 24,
+        overflow: 'auto',
+        textAlign: 'center',
+        border: '1px solid #000'
+      }}
+    >
+      {
+        new Array(40).fill(1).map((i, index) => (
+          <div key={index} style={{ fontSize: 40 }}>{index}</div>
+        ))
+      }
+    </div>
+  );
 }
 ```
 
