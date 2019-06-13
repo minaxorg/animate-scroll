@@ -33,16 +33,20 @@ function getAnimation (animationFunc: AnimationType): any {
   return Tween.Linear
 }
 
-function animateScroll (node: any, destScrollTop: number, { spendTime, animationFunc }: any) {
-  const current = node.scrollTop
+function animateScroll (
+  start: number,
+  end: number,
+  callback: (now: number) => any,
+  { spendTime, animationFunc = 'linear' }: { spendTime: number, animationFunc: AnimationType }
+) {
   let step = 0
   const totalStep = 60 * spendTime / 1000
   const animation = getAnimation(animationFunc)
 
   function func () {
     step++
-    const now = animation(step, current, destScrollTop - current, totalStep)
-    node.scrollTop = now
+    const now = animation(step, start, end - start, totalStep)
+    callback(now)
     if (step < totalStep) {
       window.requestAnimationFrame(func)
     }
