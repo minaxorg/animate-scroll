@@ -8,7 +8,7 @@ npm i --save @minax/animate-scroll
 
 ## Usage
 ```
-import animate from '@minax/animation-scroll'
+import animate from '@minax/animate-scroll'
 animate(start, end, callback[, options])
 ```
 > options is an object composed of the following key
