@@ -1,6 +1,6 @@
 {
   "name": "@minax/animate-scroll",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "Let the elements have an animated scroll in the React project.",
   "main": "lib/index.js",
   "scripts": {
