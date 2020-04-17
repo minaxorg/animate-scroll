@@ -33,10 +33,10 @@ function getAnimation (animationFunc: AnimationType): any {
   return Tween.Linear
 }
 
-function animateScroll (
-  start: number,
-  end: number,
-  callback: (now: number) => any,
+function animateScroll<T extends number | number[]> (
+  start: T,
+  end: T,
+  callback: (now: T) => any,
   options?: { spendTime?: number, animationFunc?: AnimationType }
   ) {
   if (!options) {
@@ -55,7 +55,17 @@ function animateScroll (
 
   function func () {
     step++
-    const now = animation(step, start, end - start, totalStep)
+    let now = 0 as T
+    if (typeof start === 'number' && typeof end === 'number') {
+      now = animation(step, start, end - start, totalStep)
+    }
+    if (Array.isArray(start) && Array.isArray(end)) {
+      if (start.length !== end.length) {
+        throw new SyntaxError('起始数组长度需和终止数组长度一致！')
+      } else {
+        now = start.map((item, index) => animation(step, start[index], end[index] - start[index], totalStep)) as T
+      }
+    }
     callback(now)
     if (step < totalStep) {
       window.requestAnimationFrame(func)

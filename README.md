@@ -15,9 +15,9 @@ animate(start, end, callback[, options])
 
 name|type|default|description
 --|--|--|--
-start|number||animation start point
-end|number||animation end point
-callback|function||callback with current value when update
+start|number\|number[]||animation start point(s)
+end|number\|number[]||animation end point(s)
+callback|function||callback with current value(s) when update
 spendTime|number|600|animation duration(ms)
 animationFunc|AnimationType|'linear'|animation function
 
@@ -37,6 +37,14 @@ type AnimationType = 'linear' |
 ```
 
 ## Quick Overview
+
+```js
+import animate from '@minax/animate-scroll'
+
+animate(0, 100, (value) => {})
+animate([0, 0], [100, 200], (values) => {})
+```
+
 ``` jsx
 import React, { useEffect, useRef } from 'react';
 
